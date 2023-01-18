@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Scorecard from './components/Scorecard';
+import Header from './components/Header';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Player from './components/Player';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  return <div>
+
+    <Header />
+    <Container>
+      <Row>
+        <Col>
+          <Player name={prompt("Player 1, what is your name?")} />
+        </Col>
+        <Col>
+          <Player name={prompt("Player 2, what is your name?")} />
+        </Col>
+      </Row>
+      <Row>
+        <Col><Scorecard /></Col>
+        <Col><Scorecard /></Col>
+      </Row>
+    </Container>
+
+  </div>
+
+
 }
 
 export default App;
