@@ -1,8 +1,5 @@
 # Yahtzee 
-I made this Yahtzee app, its fun!
-
-
-
+Classic Yahtzee Dice game for two players.
 
 # Getting Started with Create React App
 
