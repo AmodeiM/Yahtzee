@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Player from "./components/Player";
 import Dice from "./components/Dice";
-import PlayerTest from "./components/PlayerTest";
+
 function App() {
   return (
     <div>
@@ -14,10 +14,10 @@ function App() {
       <Container>
         <Row>
           <Col>
-            <Player name={prompt("Player 1, what is your name?")} />
+            <Player name="Player 1" />
           </Col>
           <Col>
-            <Player name={prompt("Player 2, what is your name?")} />
+            <Player name="Player 2" />
           </Col>
         </Row>
         <Row>
