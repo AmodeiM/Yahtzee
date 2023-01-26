@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import dice1 from "../images/dice1.png";
 import dice2 from "../images/dice2.png";
 import dice3 from "../images/dice3.png";
@@ -14,6 +14,7 @@ const DICE_SIDES_TO_NUMBER_MAP = {
   5: dice5,
   6: dice6,
 };
+
 function Dice(props) {
   return (
     <img
