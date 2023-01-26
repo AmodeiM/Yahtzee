@@ -5,7 +5,6 @@ function Player() {
 
     function getRandomNumber() {
         var randomNumber = Math.floor(Math.random() * 6) + 1;
-
         return randomNumber;
     }
 
@@ -21,7 +20,7 @@ function Player() {
 
     const toggleDiceLock = (id) => {
         let newDice = [...playerState.dice];
-        const diceToChange = newDice.find((die) => die.id == id);
+        const diceToChange = newDice.find((die) => die.id === id);
         diceToChange.locked = !diceToChange.locked;
         setPlayerState({ dice: newDice });
     };
@@ -46,7 +45,9 @@ function Player() {
         setPlayerState({ dice: allDice })
     }
 
-    return <div>{diceList}
-        <button onClick={rollDice}>Roll</button></div>;
+    return <div>
+        {diceList}
+        <button onClick={rollDice}>Roll</button>
+    </div>;
 }
 export default Player;
