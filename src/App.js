@@ -5,10 +5,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Player from './components/Player';
+import Dice from './components/Dice'
+import PlayerTest from './components/PlayerTest';
 function App() {
 
   return <div>
-
+    <PlayerTest />
+    {/* 
     <Header />
     <Container>
       <Row>
@@ -23,7 +26,7 @@ function App() {
         <Col><Scorecard /></Col>
         <Col><Scorecard /></Col>
       </Row>
-    </Container>
+    </Container> */}
 
   </div>
 
