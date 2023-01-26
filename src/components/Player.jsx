@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
-import diceOne from '../images/dice1.png';
-import diceTwo from '../images/dice2.png';
-import diceThree from '../images/dice3.png';
-import diceFour from '../images/dice4.png';
-import diceFive from '../images/dice5.png';
-import diceSix from '../images/dice6.png';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
-import Alert from 'react-bootstrap/Alert';
-import Dice from './Dice';
+import React, { useState } from "react";
+import Dice from "./Dice";
 
 function Player() {
+  const [playerState, setPlayerState] = useState({
+    dice: [
+      { id: 1, side: 1, locked: false },
+      { id: 2, side: 1, locked: false },
+      { id: 3, side: 1, locked: false },
+      { id: 4, side: 1, locked: false },
+      { id: 5, side: 1, locked: false },
+    ],
+  });
 
-    const [playerState, setPlayerState] = useState({
-        dice: [{ side: 0, locked: false }, { side: 1, locked: false }]
-    })
+  const toggleDiceLock = (id) => {
+    let newDice = [...playerState.dice];
+    const diceToChange = newDice.find((die) => die.id == id);
+    diceToChange.locked = !diceToChange.locked;
+    setPlayerState({ dice: newDice });
+  };
 
+  const diceList = playerState.dice.map((die) => (
+    <Dice
+      id={die.id}
+      side={die.side}
+      locked={die.locked}
+      key={die.id}
+      toggleLock={toggleDiceLock}
+    />
+  ));
 
-    const diceList = playerState.dice.map(die => (<Dice side={die.side} locked={die.locked} />))
-    return (
-
-        <div>
-            {diceList}
-        </div>
-    )
-
+  return <div>{diceList}</div>;
 }
 export default Player;
