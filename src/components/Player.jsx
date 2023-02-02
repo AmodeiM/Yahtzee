@@ -16,6 +16,14 @@ function Player() {
         return randomNumber;
     }
 
+    function checkTurnCount(turnCount) {
+        return turnCount < 14
+    }
+
+    function checkRollCount(rollCount) {
+        return rollCount < 4
+    }
+
     const [playerState, setPlayerState] = useState({
         dice: [
             { id: 1, side: 1, locked: false },
@@ -47,17 +55,17 @@ function Player() {
         //TODO: Restrict player from rolling if all dice are locked
 
         //check if the player still has turns left
-        if (turnCount < 14) {
+        if (checkTurnCount(turnCount)) {
             //check to make sure player still has at least one roll left during current turn
-            if (rollCount < 4) {
-                let allDice = [...playerState.dice];
-                allDice.forEach(die => {
-                    //only roll unlocked dice
-                    if (die.locked === false) {
-                        die.side = getRandomNumber()
-                    }
-                })
-                setPlayerState({ dice: allDice })
+            if (checkRollCount(rollCount)) {
+                setPlayerState({
+                    dice:
+                        [...playerState.dice].map(d => ({
+                            ...d,
+                            side: d.locked ? d.side : getRandomNumber()
+                        })
+                        )
+                });
                 setRollCount(rollCount + 1)
 
                 //end of turn
