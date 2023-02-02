@@ -55,30 +55,29 @@ function Player() {
         //TODO: Restrict player from rolling if all dice are locked
 
         //check if the player still has turns left
-        if (checkTurnCount(turnCount)) {
-            //check to make sure player still has at least one roll left during current turn
-            if (checkRollCount(rollCount)) {
-                setPlayerState({
-                    dice:
-                        [...playerState.dice].map(d => ({
-                            ...d,
-                            side: d.locked ? d.side : getRandomNumber()
-                        })
-                        )
-                });
-                setRollCount(rollCount + 1)
+        //check to make sure player still has at least one roll left during current turn
+        if (checkTurnCount(turnCount) && checkRollCount(rollCount)) {
+            setPlayerState({
+                dice:
+                    [...playerState.dice].map(d => ({
+                        ...d,
+                        side: d.locked ? d.side : getRandomNumber()
+                    })
+                    )
+            });
+            setRollCount(rollCount + 1)
 
-                //end of turn
-                if (rollCount === 3) {
-                    setTurnCount(turnCount + 1);
-                    setRollCount(1)
-                    if (turnCount === 13) {
-                        //End of game
-                        setRollCount(1);
-                        setTurnCount(1);
-                    }
+            //end of turn
+            if (rollCount === 3) {
+                setTurnCount(turnCount + 1);
+                setRollCount(1)
+                if (turnCount === 13) {
+                    //End of game
+                    setRollCount(1);
+                    setTurnCount(1);
                 }
             }
+
         }
 
     }
