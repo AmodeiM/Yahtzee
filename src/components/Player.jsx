@@ -16,14 +16,9 @@ function Player() {
         return randomNumber;
     }
 
-    function checkTurnCount(turnCount) {
-        return turnCount < 14
+    function checkCounts(turnCount, rollCount) {
+        return turnCount < 14 && rollCount < 4
     }
-
-    function checkRollCount(rollCount) {
-        return rollCount < 4
-    }
-
     const [playerState, setPlayerState] = useState({
         dice: [
             { id: 1, side: 1, locked: false },
@@ -56,7 +51,7 @@ function Player() {
 
         //check if the player still has turns left
         //check to make sure player still has at least one roll left during current turn
-        if (checkTurnCount(turnCount) && checkRollCount(rollCount)) {
+        if (checkCounts(turnCount, rollCount)) {
             setPlayerState({
                 dice:
                     [...playerState.dice].map(d => ({
