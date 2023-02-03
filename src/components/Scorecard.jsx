@@ -1,86 +1,49 @@
-import React from 'react';
-import Table from 'react-bootstrap/Table';
+import React from "react";
+import Table from "react-bootstrap/Table";
+const CATEGORY_NAME_MAP = {
+  aces: "Aces",
+  twos: "Twos",
+  threes: "Threes",
+  fours: "Fours",
+  fives: "Fives",
+  sixes: "Sixes",
+  threeOak: "Three of a Kind",
+  fourOak: "Four of a Kind",
+  fullHouse: "Full House",
+  smallStraight: "Small Straight",
+  largeStraight: "Large Straight",
+  yahtzee: "Yahtzee",
+};
+function Scorecard({ scorecard }) {
+  // array where each element is a TH in the tbody of the scorecard
+  let turnColumns = Array(13)
+    .fill(null)
+    .map((c, i) => i + 1)
+    .map((i) => <th key={`scorecard-header-${i}`}>#{i}</th>);
 
-function Score() {
-    return (<div className='scorecard'>
-        <Table bordered striped size='sm' >
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Scorecard</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td className='category'>Ones</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Twos</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Threes</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Fours</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Fives</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Sixes</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Sum</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Bonus</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Three of a kind</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Four of a kind</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Full House</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Small Straight</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Large Straight</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Chance</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Yahtzee</td>
-                    <td><input></input></td>
-                </tr>
-                <tr>
-                    <td className='category'>Total Score</td>
-                    <td><input></input></td>
-                </tr>
-            </tbody>
-        </Table>
+  // array where each element is a row with the category name and then 13 columns, one for each turn
+  let scoreRows = Object.entries(scorecard).map(([category, scores]) => (
+    <tr key={`score-row-${category}`}>
+      <td className="category">{CATEGORY_NAME_MAP[category]}</td>
+      {scores.map((score, idx) => (
+        <td key={`score-cell-${category}-${idx}`}>{score}</td>
+      ))}
+    </tr>
+  ));
+
+  return (
+    <div className="scorecard">
+      <Table bordered striped size="sm">
+        <thead>
+          <tr>
+            <th>Categories</th>
+            {turnColumns}
+          </tr>
+        </thead>
+        <tbody>{scoreRows}</tbody>
+      </Table>
     </div>
-
-
-    )
+  );
 }
 
-export default Score;
+export default Scorecard;
