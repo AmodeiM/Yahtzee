@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import Dice from "./Dice";
+import RollCounter
+    from "./RollCounter";
+import TurnCounter from "./TurnCounter";
+
+
 
 function Player() {
+
+    const [rollCount, setRollCount] = useState(1);
+    const [turnCount, setTurnCount] = useState(1);
 
     function getRandomNumber() {
         var randomNumber = Math.floor(Math.random() * 6) + 1;
@@ -36,18 +44,46 @@ function Player() {
     ));
 
     const rollDice = () => {
-        let allDice = [...playerState.dice];
-        allDice.forEach(die => {
-            if (die.locked === false) {
-                die.side = getRandomNumber()
+        //TODO: Restrict player from rolling if all dice are locked
+
+        //check if the player still has turns left
+        //check to make sure player still has at least one roll left during current turn
+        if (rollCount > 3) return false;
+        if (turnCount > 13) return false;
+
+        setPlayerState({
+            dice:
+                [...playerState.dice].map(d => ({
+                    ...d,
+                    side: d.locked ? d.side : getRandomNumber()
+                })
+                )
+        });
+        setRollCount(rollCount + 1)
+
+        //end of turn
+        if (rollCount === 3) {
+            setTurnCount(turnCount + 1);
+            setRollCount(1)
+            if (turnCount === 13) {
+                //End of game
+                setRollCount(1);
+                setTurnCount(1);
             }
-        })
-        setPlayerState({ dice: allDice })
+        }
+
+
+
     }
 
     return <div>
+
         {diceList}
         <button onClick={rollDice}>Roll</button>
+        <RollCounter
+            rollCount={rollCount}
+        />
+        <TurnCounter turnCount={turnCount} />
     </div>;
 }
 export default Player;
