@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import Scorecard from "./components/Scorecard";
-import Header from "./components/Header";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Player from "./components/Player";
+import Scorecard from "./components/Scorecard.jsx";
+import Header from "./components/Header.jsx";
+import Container from "react-bootstrap/esm/Container.js";
+import Row from "react-bootstrap/esm/Row.js";
+import Col from "react-bootstrap/esm/Col.js";
+import Player from "./components/Player.jsx";
 
 function App() {
   return (

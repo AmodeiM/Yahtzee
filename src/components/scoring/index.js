@@ -1,7 +1,7 @@
-import fullHouse from "./fullHouse";
-import matches from "./matches";
-import ofAKind from "./ofAKind";
-import straight from "./straight";
+import fullHouse from "./fullHouse.js";
+import matches from "./matches.js";
+import ofAKind from "./ofAKind.js";
+import straight from "./straight.js";
 
 export default {
   aces: (dice) => matches(dice, 1),
