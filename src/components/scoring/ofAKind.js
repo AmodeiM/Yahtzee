@@ -20,11 +20,13 @@ export default (dice, amount) => {
   );
   let topDice = Math.max(
     Object.entries(diceCount)
-      .filter(([side, count]) => count == maxMatches)
+      .filter(([side, count]) => count === maxMatches)
       .map(([side, count]) => side)
   );
-  if (amount == 3 && maxMatches >= 3) return topDice * 3;
-  if (amount == 4 && maxMatches >= 4) return topDice * 4;
-  if (amount == 5 && maxMatches >= 5) return 100; // yahtzee
+  console.log(`Max Matches: ${maxMatches}`);
+  console.log(`Top Dice: ${topDice}`)
+  if (amount === 3 && maxMatches >= 3) return topDice * 3;
+  if (amount === 4 && maxMatches >= 4) return topDice * 4;
+  if (amount === 5 && maxMatches >= 5) return 100; // yahtzee
   return 0;
 };

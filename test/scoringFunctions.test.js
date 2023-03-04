@@ -53,7 +53,8 @@ describe("Scoring Functions", function () {
   });
 
   describe("Of A Kind", function () {
-    it("should return 8 when the dice read 11123", function () {
+
+    it("should return 3 when the dice read 11123", function () {
       const dice = [
         { side: 1 },
         { side: 1 },
@@ -61,7 +62,17 @@ describe("Scoring Functions", function () {
         { side: 2 },
         { side: 3 },
       ];
-      assert.equal(ofAKind(dice, 3), 8);
+      assert.equal(ofAKind(dice, 3), 3);
+    });
+    it("should return 0 when the dice read 12345", function () {
+      const dice = [
+        { side: 1 },
+        { side: 2 },
+        { side: 3 },
+        { side: 4 },
+        { side: 5 },
+      ];
+      assert.equal(ofAKind(dice, 3), 0);
     });
 
   });
